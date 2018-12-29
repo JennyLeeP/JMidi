@@ -4,6 +4,7 @@ package application;
 import java.io.File;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import application.actions.KeyAction;
@@ -257,7 +258,7 @@ public class GuiHandler {
 		});
 		learnB.setOnAction(e-> {
 			if (learnB.isSelected()) {
-				keysToUse.clear();
+				keysToUse = new ArrayList<KeyAction>();
 				keybindTA.clear();
 				keybindTA.setDisable(false);
 				keybindTA.requestFocus();
@@ -300,7 +301,6 @@ public class GuiHandler {
 			if (actionDrop.getSelectionModel().getSelectedItem().equals("Key / Macro")) {
 				if (!keybindTA.getText().isEmpty()) { 
 					addControlRow(name.getText(), buttonInput.getText(), actionDrop.getValue(), keybindTA.getText().replaceAll("(\\r|\\n)", ","));
-					
 					ActionMap.addAction(stringToInt(buttonInput.getText()), new MultiKeyPressAction(keysToUse));
 					dialog.close();
 				}else {
