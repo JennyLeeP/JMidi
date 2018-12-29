@@ -22,5 +22,9 @@ public class PlayWaveAction implements ActionEvent {
 		player.setAutoPlay(true);
 		return true;
 	}
+	
+	public String toString() {
+		return ("WavePath: " + path);
+	}
 
 }
