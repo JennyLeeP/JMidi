@@ -11,10 +11,8 @@ import javafx.application.Platform;
  *
  */
 public class MidiInputReceiver implements Receiver{
-    public String name;
 
-    public MidiInputReceiver(String name) {
-	this.name = name;
+    public MidiInputReceiver(String name) { //TODO remove name in constructor, is this needed to differentiate multiple midi devices?
     }
 
     @Override
@@ -25,21 +23,16 @@ public class MidiInputReceiver implements Receiver{
 
 	byte[] aMsg = message.getMessage();
 
-	int b = aMsg[1];
-	int v = aMsg[2];
+	int keyIndex = aMsg[1];
+	int keyVelocity = aMsg[2];
 
-	if (v < 65) return;
-	if (Action.actionMap.containsKey(b)){
-	    if (Action.actionMap.get(b).getType() == EnumActionType.KEYBIND){
-		//FIXME getKeysPressed method is WRONG
-		Action.actionMap.get(b).handleAction(b, Action.actionMap.get(b).getKeysPressed());
-	    } else {
-	    Action.actionMap.get(b).handleAction(b, Action.actionMap.get(b).getPath());
-	    }
+	if (keyVelocity < 65) return;
+	if (ActionMap.containsKey(keyIndex)){
+		ActionMap.handleAction(keyIndex);
 	}
 	Platform.runLater(new Runnable(){
 	    @Override
-	    public void run() {updateGui(b, v);}
+	    public void run() {updateGui(keyIndex, keyVelocity);}
 	});
     }
 
