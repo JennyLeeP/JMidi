@@ -20,5 +20,9 @@ public class KeyAction {
 	public EnumDirection getDirection() {
 		return this.keyDirection;
 	}
+	
+	public String toString() {
+		return ("Key: " + key + " Direction: " + keyDirection);
+	}
 
 }

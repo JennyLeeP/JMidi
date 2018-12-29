@@ -21,5 +21,14 @@ public class MultiKeyPressAction implements ActionEvent {
 		}
 		return true;
 	}
+	
+	public String toString() {
+		StringBuilder output = new StringBuilder();
+		for (KeyAction currAction:actionList) {
+			if (output.length() == 0) output.append(", ");
+			output.append(currAction);
+		}
+		return output.toString();
+	}
 
 }
