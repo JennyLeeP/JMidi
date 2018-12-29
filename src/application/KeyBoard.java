@@ -15,7 +15,7 @@ public class KeyBoard {
 	    robot = new Robot();
 	    if (dir == EnumDirection.DOWN){
 		robot.keyPress(getKeyVK_Code(code));
-	    }else if (dir == EnumDirection.DOWN){
+	    }else if (dir == EnumDirection.UP){
 		robot.keyRelease(getKeyVK_Code(code));
 	    }else {
 		

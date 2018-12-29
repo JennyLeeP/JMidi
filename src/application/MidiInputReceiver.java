@@ -22,10 +22,8 @@ public class MidiInputReceiver implements Receiver{
     public void send(MidiMessage message, long timeStamp) {
 
 	byte[] aMsg = message.getMessage();
-
 	int keyIndex = aMsg[1];
 	int keyVelocity = aMsg[2];
-
 	if (keyVelocity < 65) return;
 	if (ActionMap.containsKey(keyIndex)){
 		ActionMap.handleAction(keyIndex);
